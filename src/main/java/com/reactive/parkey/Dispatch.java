@@ -63,8 +63,6 @@ public class Dispatch {
         List<SNS> snsList = Arrays.asList(new Facebook(), new Twitter(), new Googleplus());
 
         //runtime 시점에 post에 어떤 클래스가 실행될지 결정 다이나믹 디스패치
-        //메서드 오버로딩은 컴파일 시점에 파라미터 타입이 정해져야한다
-        //현재 코드는 정적으로 정해지지 않고 런타임에 정해짐.
         postList.forEach(post -> snsList.forEach(sns -> post.postOn(sns)));
 
     }
