@@ -6,37 +6,56 @@ import java.util.List;
 public class Dispatch {
 
     interface Post {
-        void postOn(Facebook sns);
-        void postOn(Twitter sns);
+        void postOn(SNS sns);
     }
     static class Text implements Post {
-        @Override
-        public void postOn(Twitter sns) {
-            System.out.println("text ->" + "facebook");
-        }
-        @Override
-        public void postOn(Facebook sns) {
-            System.out.println("text ->" + "facebook");
+        public void postOn(SNS sns) {
+            sns.post(this);
         }
     }
 
     static class Picture implements Post {
-        @Override
-        public void postOn(Facebook sns) {
-            System.out.println("picture ->" + "facebook");
-        }
-        @Override
-        public void postOn(Twitter sns) {
-            System.out.println("picture ->" + "facebook");
+        public void postOn(SNS sns) {
+            sns.post(this);
         }
     }
     
-    interface SNS {}
+    interface SNS {
+        void post(Text text);
+        void post(Picture picture);
+    }
     static class Facebook implements SNS {
+        @Override
+        public void post(Text text) {
+            System.out.println("text Facebook");
+        }
+
+        @Override
+        public void post(Picture picture) {
+            System.out.println("picture Facebook");
+        }
     }
     static class Twitter implements SNS {
+        @Override
+        public void post(Text text) {
+            System.out.println("text Twit");
+        }
+
+        @Override
+        public void post(Picture picture) {
+            System.out.println("picture Twit");
+        }
     }
     static class Googleplus implements SNS {
+        @Override
+        public void post(Text text) {
+            System.out.println("text Google");
+        }
+
+        @Override
+        public void post(Picture picture) {
+            System.out.println("picture Google");
+        }
     }
 
     public static void main(String[] args) {
