@@ -13,6 +13,14 @@ public class Generic {
         System.out.println(getSize(ns));
     }
 
+    /**
+     * List<? extends T> 메소드 내부에서 사용시 upper bound 사용
+     * <T extends Comparable<? super T>> 메서드 밖에서 사용시 lower bound 사용
+     * <T extends Comparable<T>> 은 “자신과 비교될 수 있는 모든 타입 T”라고 읽을 수 있다.
+     * @param list
+     * @param <T>
+     * @return
+     */
     private static <T extends Comparable<? super T>> T max(List<? extends T> list) {
         return list.stream().reduce((a, b) -> a.compareTo(b) > 0 ? a : b).get();
     }
